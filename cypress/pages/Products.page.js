@@ -1,20 +1,24 @@
 class ProductsPage {
 
-  selectProductByIndex(index) {
-    cy.get('.shelf-item').eq(index).within(() => {
-      cy.get('.shelf-item__title')
-        .invoke('text')
-        .then(name => cy.wrap(name.trim()).as('productName'));
+  selectProductByName(productName) {
 
-      cy.get('.shelf-item__price')
-        .invoke('text')
-        .then(price => {
-          const normalized = price.replace(/\s/g, '');
-          cy.wrap(normalized).as('productPrice');
-        });
+    cy.contains('.shelf-item', productName)
+      .within(() => {
 
-      cy.contains('Adicionar ao carrinho').click();
-    });
+        cy.get('.shelf-item__title')
+          .invoke('text')
+          .then(name => cy.wrap(name.trim()).as('productName'));
+
+        cy.get('.shelf-item__price')
+          .invoke('text')
+          .then(price => {
+            const normalized = price.replace(/\s/g, '');
+            cy.wrap(normalized).as('productPrice');
+          });
+
+        cy.contains('Add to cart').click();
+      });
+
   }
 
 }

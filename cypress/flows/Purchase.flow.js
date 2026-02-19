@@ -2,7 +2,6 @@ import LoginPage from '../pages/Login.page.js';
 import ProductsPage from '../pages/Products.page.js';
 import CartPage from '../pages/Cart.page.js';
 
-
 class PurchaseFlow {
 
   executeLogin(user) {
@@ -10,18 +9,18 @@ class PurchaseFlow {
     LoginPage.login(user.username, user.password);
   }
 
-  addProduct(index) {
-    ProductsPage.selectProductByIndex(index);
+  addProduct(product) {
+    ProductsPage.selectProductByName(product.name);
   }
 
-  validateCart() {
+  validateCart(expectedQuantity) {
     CartPage.validateDrawerVisible();
-    CartPage.validateQuantity('1');
+    CartPage.validateQuantity(expectedQuantity);
     CartPage.validateProductName();
-    CartPage.validateSubtotal();
+    CartPage.validateSubtotal(expectedQuantity);
     CartPage.validateCheckoutEnabled();
   }
 
 }
 
-export default new PurchaseFlow();
+export default PurchaseFlow;  
