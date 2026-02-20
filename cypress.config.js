@@ -4,6 +4,8 @@ const yaml = require("js-yaml");
 const allureWriter = require("@shelex/cypress-allure-plugin/writer");
 
 module.exports = defineConfig({
+  video: false,
+  screenshotOnRunFailure: true,
   e2e: {
     setupNodeEvents(on, config) {
 

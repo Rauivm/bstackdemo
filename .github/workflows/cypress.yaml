@@ -11,18 +11,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # =========================
+      # Checkout do código
+      # =========================
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # =========================
+      # Setup Node
+      # =========================
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: 'npm'
 
+      # =========================
+      # Instala dependências
+      # =========================
       - name: Install dependencies
         run: npm ci
 
+      # =========================
+      # Executa testes Cypress
+      # =========================
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
+
+      # =========================
+      # Gera relatório Allure
+      # =========================
+      - name: Generate Allure report
+        run: npx allure generate allure-results --clean -o allure-report
+
+      # =========================
+      # Upload do relatório como artifact
+      # =========================
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
