@@ -7,31 +7,33 @@ https://bstackdemo.com/
 ---
 
 # 📌 Estrutura do Projeto
+
+```plaintext
 cypress/
 ├── e2e/
-│ ├── 01_smoke.suite.cy.js
-│ ├── 02_login.suite.cy.js
-│ └── 03_addToCart.suite.cy.js
+│   ├── 01_smoke.suite.cy.js
+│   ├── 02_login.suite.cy.js
+│   └── 03_addToCart.suite.cy.js
 │
 ├── pages/
-│ ├── Login.page.js
-│ ├── Products.page.js
-│ └── Cart.page.js
+│   ├── Login.page.js
+│   ├── Products.page.js
+│   └── Cart.page.js
 │
 ├── flows/
-│ ├── Login.flow.js
-│ └── Purchase.flow.js
+│   ├── Login.flow.js
+│   └── Purchase.flow.js
 │
 ├── fixtures/
-│ └── env.yaml
+│   └── env.yaml
 │
 ├── support/
-│ ├── commands.js
-│ └── e2e.js
+│   ├── commands.js
+│   └── e2e.js
 │
 cypress.config.js
 package.json
-
+```
 
 ---
 
