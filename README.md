@@ -11,9 +11,9 @@ https://bstackdemo.com/
 ```plaintext
 cypress/
 ├── e2e/
-│   ├── 01_smoke.suite.cy.js
-│   ├── 02_login.suite.cy.js
-│   └── 03_addToCart.suite.cy.js
+│   ├── smoke.suite.cy.js
+│   ├── login.suite.cy.js
+│   └── addToCart.suite.cy.js
 │
 ├── pages/
 │   ├── Login.page.js
