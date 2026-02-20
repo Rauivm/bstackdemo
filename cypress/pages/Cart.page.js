@@ -15,17 +15,29 @@ class CartPage {
     });
   }
 
-  validateSubtotal() {
-    cy.get('@productPrice').then(price => {
+validateSubtotal(expectedQuantity) {
 
-      const priceNumber = price.match(/[\d,.]+/)[0];
+  cy.get('@productPrice').then(price => {
 
-      cy.get('.float-cart__footer')
-        .invoke('text')
-        .then(footerText => {
-          const footerNumber = footerText.match(/[\d,.]+/)[0];
-          expect(footerNumber).to.equal(priceNumber);
-        });
+    // Extrai apenas número do preço (ex: 799.00)
+    const unitPrice = parseFloat(
+      price.match(/[\d,.]+/)[0].replace(',', '')
+    );
+
+    const expectedSubtotal = (unitPrice * expectedQuantity).toFixed(2);
+
+    cy.get('.float-cart__footer')
+      .invoke('text')
+      .then(footerText => {
+
+        const subtotalText = footerText.match(/[\d,.]+/)[0];
+        const actualSubtotal = parseFloat(
+          subtotalText.replace(',', '')
+        ).toFixed(2);
+
+        expect(actualSubtotal).to.equal(expectedSubtotal);
+
+      });
 
     });
   }

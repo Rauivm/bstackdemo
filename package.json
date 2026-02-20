@@ -1,22 +1,18 @@
 {
   "name": "bstackdemo",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "test": "cypress run",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "test:report": "cypress run && allure generate allure-results --clean -o allure-report"
   },
   "dependencies": {
-    "cypress": "^15.10.0",
-    "js-yaml": "^4.1.1"
+    "cypress": "^15.10.0"
   },
   "devDependencies": {
     "@shelex/cypress-allure-plugin": "^2.41.2"
-  },
-  "scripts": {
-  "test": "cypress run",
-  "allure:generate": "allure generate allure-results --clean -o allure-report",
-  "allure:open": "allure open allure-report",
-  "test:report": "cypress run && allure generate allure-results --clean -o allure-report"
   }
 }

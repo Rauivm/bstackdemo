@@ -1,9 +1,8 @@
 describe('Suite Smoke - Validação mínima da página inicial', () => {
 
   beforeEach(() => {
-    cy.visit('https://bstackdemo.com/');
+    cy.visit('/');
   });
-
   it('CT00 - Deve carregar a página inicial corretamente', () => {
 
     // Página carregada

@@ -9,13 +9,13 @@ class PurchaseFlow {
     LoginPage.login(user.username, user.password);
   }
 
-  addProduct(product) {
-    ProductsPage.selectProductByName(product.name);
+  addProduct(productName) {
+    ProductsPage.selectProductByName(productName);
   }
 
   validateCart(expectedQuantity) {
     CartPage.validateDrawerVisible();
-    CartPage.validateQuantity(expectedQuantity);
+    CartPage.validateQuantity(String(expectedQuantity));
     CartPage.validateProductName();
     CartPage.validateSubtotal(expectedQuantity);
     CartPage.validateCheckoutEnabled();

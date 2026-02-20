@@ -16,11 +16,3 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 import "@shelex/cypress-allure-plugin";
-
-import yaml from 'js-yaml';
-import fs from 'fs';
-
-Cypress.Commands.add('loadYaml', (filePath) => {
-  const file = fs.readFileSync(filePath, 'utf8');
-  return yaml.load(file);
-});

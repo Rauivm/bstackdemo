@@ -33,6 +33,14 @@ jobs:
         run: npm ci
 
       # =========================
+      # 🧹 Limpa resultados antigos do Allure
+      # =========================
+      - name: Clean Allure directories
+        run: |
+          rm -rf allure-results
+          rm -rf allure-report
+
+      # =========================
       # Executa testes Cypress
       # =========================
       - name: Run Cypress tests
