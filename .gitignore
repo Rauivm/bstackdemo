@@ -1,0 +1,13 @@
+# Node
+node_modules/
+
+# Cypress artifacts
+cypress/videos/
+cypress/screenshots/
+
+# Allure
+allure-results/
+allure-report/
+
+# Logs
+npm-debug.log*

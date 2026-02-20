@@ -1,63 +1,179 @@
-📋 TEST PLAN
-BStackDemo – Login & Cart Validation
-1. Introdução
-Este plano organiza a validação das funcionalidades centrais do site https://bstackdemo.com/
-, concentrando-se no fluxo que sustenta qualquer operação de e-commerce: autenticação, escolha de produtos e consistência do carrinho. O interesse aqui não é apenas verificar se a aplicação “funciona”, mas garantir que o percurso do usuário — do login ao checkout — mantenha coerência, previsibilidade e integridade da regra de negócio.
+# 📋 TEST PLAN  
+**Projeto:** BStackDemo – Login & Cart Validation  
+**Versão do Documento:** 1.1  
+**Data:** 20/02/2026  
 
-2. Objetivo dos Testes
-Os testes buscam verificar se o processo de login autentica corretamente usuários válidos e bloqueia acessos indevidos com mensagens adequadas. Avaliam também se os produtos podem ser adicionados ao carrinho sem inconsistências, se o subtotal reflete com precisão os itens selecionados e se a interface preserva clareza e estabilidade após cada ação do usuário.
+---
 
-3. Escopo
-3.1 Dentro do Escopo
+## 1. Objetivo
 
-Estão contempladas a autenticação com credenciais válidas, a exibição de mensagens para tentativas inválidas, a renderização da lista de produtos, a adição e remoção de itens no carrinho, a atualização do contador, a validação do subtotal, a exibição e habilitação do botão de checkout e o comportamento do drawer (Bag).
+Definir o planejamento de testes para validar o fluxo principal da aplicação BStackDemo (https://bstackdemo.com/), com foco nas funcionalidades de login e adição de produto ao carrinho.
 
-3.2 Fora do Escopo
+O objetivo é garantir que o usuário consiga:
 
-Ficam fora desta etapa testes de performance, segurança, integração com pagamento, validações cross-browser e responsividade mobile. A delimitação é estratégica: o foco está na solidez do fluxo principal.
+- Acessar a aplicação corretamente  
+- Autenticar-se com credenciais válidas  
+- Receber mensagem adequada em caso de erro  
+- Adicionar produto ao carrinho  
+- Visualizar corretamente o subtotal  
+- Visualizar e interagir com o botão de checkout  
 
-4. Estratégia de Teste
-4.1 Abordagem
+---
 
-Adota-se uma abordagem híbrida. A execução manual permite leitura exploratória da interface e identificação de fragilidades iniciais. Em seguida, a automação com Cypress garante repetibilidade, estabilidade e proteção contra regressões.
+## 2. Escopo
 
-4.2 Tipos de Teste
+### 2.1 Dentro do Escopo
 
-Serão conduzidos testes funcionais, negativos, de regressão e baseados em risco, priorizando cenários com maior impacto no negócio.
+Serão validadas as seguintes funcionalidades:
 
-5. Análise de Risco
+- Carregamento da página inicial (validação mínima – Smoke)  
+- Login com credenciais válidas  
+- Login com credenciais inválidas  
+- Adição de um produto ao carrinho  
+- Exibição do drawer (Bag)  
+- Atualização do contador de itens  
+- Validação dinâmica do subtotal  
+- Exibição do botão Checkout  
 
-Login, carrinho e subtotal concentram alto impacto. O carrinho apresenta risco crítico, pois qualquer falha compromete diretamente a conversão. Inconsistências no subtotal afetam confiança e transparência. Já aspectos visuais da interface, embora relevantes, possuem impacto moderado.
+### 2.2 Fora do Escopo
 
-6. Ambiente de Teste
+Não fazem parte deste planejamento:
 
-Os testes serão executados no endereço https://bstackdemo.com/
-, utilizando Google Chrome em sua versão estável mais recente, em ambiente Windows 10 ou superior. A automação será implementada com Cypress. Os dados de teste — usuários e produtos — serão controlados por arquivo de configuração.
+- Testes de performance  
+- Testes de segurança  
+- Integração com gateway de pagamento  
+- Testes cross-browser  
+- Responsividade mobile  
+- Remoção de itens do carrinho  
+- Testes com múltiplas quantidades  
 
-7. Critérios de Entrada
+---
 
-Os testes iniciam-se quando o ambiente estiver acessível, houver usuário válido disponível e não houver indisponibilidades conhecidas na aplicação.
+## 3. Premissas e Dependências
 
-8. Critérios de Saída
+- A aplicação estará acessível durante o período de testes.  
+- Os usuários de teste permanecerão ativos.  
+- Os produtos exibidos na página não sofrerão alterações estruturais relevantes.  
+- Não haverá mudança significativa de layout que impacte os seletores automatizados.  
 
-Considera-se a etapa concluída quando todos os testes críticos forem executados, não houver defeitos críticos em aberto e o fluxo principal (Login → Adição ao Carrinho → Checkout disponível) estiver funcional.
+---
 
-9. Casos de Teste Planejados
+## 4. Análise de Risco
 
-No login, serão validados: autenticação com credenciais válidas, tentativa com senha incorreta e tentativa sem preenchimento de campos obrigatórios.
+| Funcionalidade | Impacto no Negócio | Probabilidade | Nível de Risco |
+|----------------|-------------------|---------------|----------------|
+| Login | Alto | Médio | Alto |
+| Adição ao carrinho | Alto | Alto | Crítico |
+| Cálculo de subtotal | Alto | Médio | Alto |
+| Interface visual | Médio | Médio | Médio |
 
-No carrinho, serão avaliados: adição de um produto, inclusão de múltiplos itens com atualização correta do contador, validação do subtotal, verificação da visibilidade e habilitação do botão de checkout e remoção adequada de produtos.
+Funcionalidades relacionadas ao carrinho e subtotal possuem impacto direto na conversão e, portanto, recebem prioridade máxima na validação.
 
-10. Dados de Teste
+---
 
-Serão utilizados usuário válido, usuário inválido, produtos configuráveis via arquivo externo e quantidades parametrizáveis.
+## 5. Estratégia de Teste
 
-11. Rastreabilidade
+A abordagem adotada será:
 
-Os casos de teste cobrem integralmente os requisitos de login funcional, adição ao carrinho, cálculo correto do subtotal e disponibilidade de checkout, assegurando correspondência direta entre requisito e validação.
+- Execução exploratória manual inicial para entendimento do comportamento da aplicação  
+- Automação dos cenários principais utilizando Cypress  
 
-12. Considerações Técnicas
+A automação será estruturada com:
 
-Os seletores devem evitar dependência de índices frágeis. As validações não devem utilizar valores fixos sempre que possível. Os preços devem ser calculados dinamicamente, e a estrutura da suíte precisa permitir expansão futura para cenários orientados a dados.
+- Padrão Page Object  
+- Camada de Flow para organização do fluxo  
+- Parametrização de dados via arquivo externo (YAML)  
+- Validações dinâmicas para evitar hardcode  
+- Estrutura preparada para expansão futura (data-driven)  
 
-Este plano concentra-se na espinha dorsal da experiência de compra. Quando login, carrinho e subtotal operam com consistência, o sistema sustenta sua credibilidade; quando falham, comprometem mais do que uma funcionalidade — abalam a confiança do usuário.
+---
+
+## 6. Casos de Teste Planejados
+
+### CT00 – Validação mínima da página (Smoke)  
+**Prioridade:** Alta  
+
+- Página carregada corretamente  
+- Produtos renderizados  
+- Botão "Add to cart" visível  
+- Ícone do carrinho visível  
+
+---
+
+### CT01 – Login com credenciais válidas  
+**Prioridade:** Alta  
+
+- Usuário autenticado com sucesso  
+- Login realizado com sucesso e interface atualizada  
+
+---
+
+### CT02 – Login com credenciais inválidas  
+**Prioridade:** Alta  
+
+- Exibição da mensagem de erro ("Invalid Password")  
+
+---
+
+### CT03 – Adição de produto ao carrinho  
+**Prioridade:** Crítica  
+
+- Produto selecionado dinamicamente  
+- Drawer do carrinho exibido  
+- Quantidade exibida corretamente  
+- Nome do produto listado no carrinho  
+- Subtotal validado dinamicamente  
+- Botão "Checkout" visível  
+
+---
+
+## 7. Ambiente de Teste
+
+- URL: https://bstackdemo.com/  
+- Navegador: Google Chrome  
+- Sistema Operacional: Windows 10+  
+- Framework de automação: Cypress  
+- Relatório: Allure  
+- Dados de teste: arquivo YAML externo  
+
+---
+
+## 8. Critério de Entrada
+
+Os testes poderão iniciar quando:
+
+- A aplicação estiver acessível  
+- Não houver incidentes críticos conhecidos  
+- Usuário de teste estiver disponível  
+
+---
+
+## 9. Critério de Conclusão
+
+O fluxo será considerado validado quando:
+
+- 100% dos testes críticos forem executados  
+- Nenhum defeito crítico permanecer aberto  
+- O fluxo principal for executado com sucesso:
+
+Página Inicial → Login → Adição ao Carrinho → Checkout visível  
+
+---
+
+## 10. Rastreabilidade
+
+| Requisito | Caso de Teste |
+|------------|----------------|
+| Login funcional | CT01, CT02 |
+| Renderização inicial | CT00 |
+| Adição ao carrinho | CT03 |
+| Validação de subtotal | CT03 |
+| Disponibilidade de checkout | CT03 |
+
+---
+
+## 11. Observações
+
+O desafio solicitava a automação de um cenário principal.
+
+Foram adicionadas melhorias estruturais (Page Object, Flow, Pipeline automatizada via GitHub Actions garantindo execução automática a cada atualização do repositório, parametrização externa e relatório Allure) com o objetivo de demonstrar organização, escalabilidade e preocupação com manutenção futura da suíte.

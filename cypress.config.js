@@ -1,19 +1,37 @@
 const { defineConfig } = require("cypress");
-const fs = require('fs')
-const yaml = require('js-yaml')
+const fs = require("fs");
+const yaml = require("js-yaml");
+const allureWriter = require("@shelex/cypress-allure-plugin/writer");
 
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
 
-      on('task', {
-        readYaml(filePath) {
-          const file = fs.readFileSync(filePath, 'utf8')
-          return yaml.load(file)
-        }
-      })
+      // =========================
+      // Allure Plugin
+      // =========================
+      allureWriter(on, config);
 
-      return config
+      // =========================
+      // Custom Tasks
+      // =========================
+      on("task", {
+        readYaml(filePath) {
+          const file = fs.readFileSync(filePath, "utf8");
+          return yaml.load(file);
+        },
+      });
+
+      return config;
     },
+    baseUrl: "https://bstackdemo.com",
   },
-})
+
+  // =========================
+  // Allure Configuration
+  // =========================
+  env: {
+    allure: true,
+    allureResultsPath: "allure-results",
+  },
+});
