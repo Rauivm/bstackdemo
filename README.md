@@ -91,7 +91,7 @@ A validação foi interpretada como:
 - Padrão Page Object
 - Camada de Flow
 - Dados externos via YAML
-- Validação dinâmica de preços (sem hardcode)
+- Validação dinâmica de preços
 - Relatório estruturado com Allure
 
 ---
