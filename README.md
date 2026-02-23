@@ -1,4 +1,4 @@
-![Cypress Tests](https://github.com/Rauivm/bstackdemo/actions/workflows/cypress.yml/badge.svg)
+[![Cypress Tests](https://github.com/Rauivm/bstackdemo/actions/workflows/cypress.yaml/badge.svg)](https://github.com/Rauivm/bstackdemo/actions/workflows/cypress.yaml)
 # 🧪 Desafio QA – BStackDemo
 
 Este projeto contém a implementação do desafio técnico de QA para validação do site:
