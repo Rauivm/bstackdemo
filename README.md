@@ -65,6 +65,7 @@ Foram executados 4 cenários automatizados:
 Resultado final: **100% de sucesso**
 
 O relatório pode ser gerado via Allure.
+https://rauivm.github.io/bstackdemo/#
 
 ---
 
